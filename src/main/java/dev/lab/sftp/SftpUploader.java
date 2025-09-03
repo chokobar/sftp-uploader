@@ -60,7 +60,6 @@ public class SftpUploader {
             try {
                 Files.move(srcFile, dstFile, StandardCopyOption.REPLACE_EXISTING);
             } catch (Exception ex) {
-                // 다른 볼륨/FS일 가능성 대비: copy → delete 폴백
                 Files.copy(srcFile, dstFile, StandardCopyOption.REPLACE_EXISTING);
                 Files.deleteIfExists(srcFile);
             }
