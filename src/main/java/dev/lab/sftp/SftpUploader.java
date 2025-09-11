@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,8 +24,8 @@ public class SftpUploader {
     @Value("${mvExport.enabled:true}")
     private boolean mvEnabled;
 
-    // 이동 대상 파일명 (기본값: sonar_ping_deep.wav)
-    @Value("${mvExport.target.filename:sonar_ping_deep.wav}")
+    // 이동 대상 파일명 (기본값: exception_test.zip)
+    @Value("${mvExport.target.filename:exception_test.zip}")
     private String targetFilename;
 
     // A(소스 폴더)에서 B(목적지 폴더)로 targetFilename 하나만 이동
@@ -41,6 +42,27 @@ public class SftpUploader {
         log.info("srcRoot = {}", srcRoot);
         log.info("destRoot = {}", destRoot);
         log.info("target  = {}", srcFile);
+
+        if (!Files.exists(srcFile)) {
+            log.warn("파일이 존재하지 않습니다: {}", srcFile);
+            return;
+        }
+        if (!Files.isRegularFile(srcFile)) {
+            log.warn("대상은 파일이 아닙니다: {}", srcFile);
+            return;
+        }
+
+        try {
+            long bytes = Files.size(srcFile);
+            long kilobyte = bytes / 1024;
+            long megabyte = kilobyte / 1024;
+
+            log.info("{} bytes", bytes);
+            log.info("{} KB", kilobyte);
+            log.info("{} MB", megabyte);
+        } catch (IOException e) {
+            log.error("파일 크기를 읽는 중 오류 발생: {}", srcFile, e);
+        }
 
         try {
             if (!Files.exists(srcRoot)) {
