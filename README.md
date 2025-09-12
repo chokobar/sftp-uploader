@@ -15,8 +15,7 @@ Spring Boot 스케줄러로 지정된 파일 1개를 소스(A)에서 목적지(B
 
 ## 🔍 주요 기능
 - mvExport.target.filename에 지정한 단일 파일 이동
-- 이동 실패 시 copy → delete 폴백 처리
-- 목적지 폴더 자동 생성
+- 파일의 Size 측정
 - mvExport.enabled로 전체 on/off 스위치
 - 매 분 0초에 스케줄 실행(기본 설정)
 
