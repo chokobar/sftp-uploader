@@ -25,6 +25,7 @@ public class SftpUploader {
     private boolean mvEnabled;
 
     // 이동 대상 파일명 (기본값: exception_test.zip)
+    // ㄷㅐ상 파일은 그때마다 따로 설정
     @Value("${mvExport.target.filename:exception_test.zip}")
     private String targetFilename;
 
