@@ -95,13 +95,13 @@ public class SftpUploader {
     }
 
     // 필요 시 코드에서 직접 파일명을 지정해서 호출할 수도 있음
-    public void moveOne(String filename) {
-        String old = this.targetFilename;
-        try {
-            this.targetFilename = filename;
-            fileMoveExport();
-        } finally {
-            this.targetFilename = old;
-        }
-    }
+//    public void moveOne(String filename) {
+//        String old = this.targetFilename;
+//        try {
+//            this.targetFilename = filename;
+//            fileMoveExport();
+//        } finally {
+//            this.targetFilename = old;
+//        }
+//    }
 }
