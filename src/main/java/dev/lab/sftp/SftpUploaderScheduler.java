@@ -12,7 +12,7 @@ public class SftpUploaderScheduler {
 
     private final SftpUploader sftpUploader;
 
-    // 1분마다 실행 (매 분 0초마다)
+    // 1분마다 실행 (매 1분 마다)
     @Scheduled(cron = "0 * * * * *")
     public void runMoveTask() {
         log.info("=== A에서 B로 파일이동 시작 ===");
